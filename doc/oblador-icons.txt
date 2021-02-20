@@ -1,0 +1,16 @@
+Installation
+https://github.com/oblador/react-native-vector-icons
+(1) yarn add react-native-vector-icons
+(1a) cd ios && pod install && cd ..
+(1) yarn add @types/react-native-vector-icons
+(1a) cd ios && pod install && cd ..
+
+Gallery
+https://oblador.github.io/react-native-vector-icons/
+
+Trouble-shooting
+  iOS issue: Unrecognized font family only with react-native run-ios
+    https://github.com/oblador/react-native-vector-icons/issues/135#issuecomment-219137774
+  Android issue: Icons are not showing up (https://github.com/oblador/react-native-vector-icons/issues/661)
+    Edit android/app/build.gradle ( NOT android/build.gradle ) and add the following:
+      apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

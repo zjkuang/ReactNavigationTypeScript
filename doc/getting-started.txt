@@ -1,0 +1,21 @@
+(1) Creating
+(Note: add '--ignore-existing' to fix `yarn ios` issue)
+$ npx --ignore-existing react-native init MyAppReactNativeTypeScript --template react-native-template-typescript
+(Fix `yarn android` issue:)
+(1.1) In android/gradle/wrapper/gradle-wrapper.properties replace
+  distributionUrl=https\://services.gradle.org/distributions/gradle-6.2-all.zip
+with
+  distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-all.zip
+(1.2) Add a file android/local.properties and add a line in the file:
+  sdk.dir = /Users/kuang/Library/Android/sdk
+(Run the app)
+  `yarn ios`
+  `yarn android`
+
+(2) Push to GitHub
+(2.1) Create a new empty repository 'MyAppReactNativeTypeScript' in GitHub. (NO README, NO .gitignore, NOTHING!!!)
+(2.2) `cd MyAppReactNativeTypeScript` and `git init` and `git add .` and `git commit -m 'initial'`
+(2.3) `git remote add origin https://github.com/zjkuang/MyAppReactNativeTypeScript.git`
+(2.4) `git push -u origin master`
+
+(3) Run on a specific Android Emulator
