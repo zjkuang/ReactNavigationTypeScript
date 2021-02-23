@@ -1,7 +1,10 @@
 import React from 'react';
-import {createStackNavigator, StackNavigationProp} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import {Text, View} from 'react-native';
-import {styles} from './style';
+import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {AnnaDetailsView} from '../demo/anna-stack/anna-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -15,9 +18,10 @@ type AnnaStackParamList = {
 type AnnaStackNavitationProp = StackNavigationProp<AnnaStackParamList>;
 const AnnaStack = createStackNavigator<AnnaStackParamList>();
 export const AnnaNavigationView = () => {
+  const test = true;
   return (
     <AnnaStack.Navigator>
-      {true ? (
+      {test ? (
         <AnnaStack.Screen
           name="Anna"
           children={() => [<AnnaView key={0} test={'test'} />]}
@@ -37,31 +41,37 @@ type AnnaViewProp = {
 const AnnaView = (props: AnnaViewProp) => {
   const navigation = useNavigation<AnnaStackNavitationProp>();
   const rootNavigation = useNavigation<RootStackNavigationProp>();
+
+  const title = 'Anna';
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Anna',
+      title: title,
       headerTitleStyle: {
         alignSelf: 'center',
       },
     });
   }, [navigation]);
+
+  React.useEffect(() => {
+    console.log(`${title} props.test=${props.test}`);
+  }, [props]);
+  
   return (
     <View style={styles.baseView}>
       <TouchableOpacity
         onPress={() => {
           navigation.push('AnnaDetails');
-        }}
-      >
-        <Text>Show Detail</Text>
+        }}>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Detail</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => {
-          rootNavigation.navigate("Modal");
-        }}
-      >
-        <Text>Show Modal</Text>
+          rootNavigation.navigate('Modal', {context: 'anna'});
+        }}>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Modal</Text>
       </TouchableOpacity>
-  </View>
+    </View>
   );
 };

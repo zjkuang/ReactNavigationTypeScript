@@ -1,9 +1,8 @@
 Installation
 https://github.com/oblador/react-native-vector-icons
 (1) yarn add react-native-vector-icons
-(1a) cd ios && pod install && cd ..
-(1) yarn add @types/react-native-vector-icons
-(1a) cd ios && pod install && cd ..
+(2) yarn add @types/react-native-vector-icons
+(*) cd ios && pod install && cd ..
 
 Gallery
 https://oblador.github.io/react-native-vector-icons/

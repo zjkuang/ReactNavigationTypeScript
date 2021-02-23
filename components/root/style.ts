@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {commonStyles, positioning, modalControl} from '../common/style';
+import {commonStyles, positioning, modalControl, color} from '../common/style';
 
 const styles = StyleSheet.create({
   baseView: {
@@ -8,4 +8,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {styles, commonStyles, positioning, modalControl};
+export {styles, commonStyles, color, positioning, modalControl};

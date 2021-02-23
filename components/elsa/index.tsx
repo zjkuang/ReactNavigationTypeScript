@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {View, Text} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './style';
@@ -24,13 +21,13 @@ type ElsaStackParamList = {
   Elsa: {}; // navigation root
   // more navigation children can be added here
 };
-type ElsaScreenNavigationProp = StackNavigationProp<ElsaStackParamList>;
 const ElsaStack = createStackNavigator<ElsaStackParamList>();
 type ElsaNavigationViewProps = {
   navigateToSibling?: MainTabNavigateToSiblingFunc;
 };
 export const ElsaNavigationView = (props: ElsaNavigationViewProps) => {
   const navigation = useNavigation();
+
   const navigateToSibling: MainTabNavigateToSiblingFunc = (
     name: MainTabChildSiblingName,
   ) => {
@@ -40,9 +37,12 @@ export const ElsaNavigationView = (props: ElsaNavigationViewProps) => {
     | MainTabNavigateToSiblingFunc
     | undefined = navigateToSibling;
   navigationPerformer = props.navigateToSibling; // comment/uncomment this line to perform by self/parent
+
+  const passNavigationPerformer = true;
+  
   return (
     <ElsaStack.Navigator>
-      {true ? (
+      {passNavigationPerformer ? (
         <ElsaStack.Screen
           name="Elsa"
           children={() => [
@@ -89,9 +89,9 @@ const elsaList: ElsaListItem[] = [
 type ElsaViewProps = {
   navigateToSibling?: MainTabNavigateToSiblingFunc;
 };
-
 const ElsaView = (props: ElsaViewProps) => {
   const navigation = useNavigation();
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: 'Elsa',
@@ -100,7 +100,9 @@ const ElsaView = (props: ElsaViewProps) => {
       },
     });
   }, [navigation]);
-  const navigationPerformer: 'parent' | 'self' = 'self';
+
+  const navigationPerformer: 'parent' | 'self' = 'self'; // toggle between 'parent' and 'self' to perform navigation by MainTab and Elsa alternatively
+
   return (
     <View style={styles.baseView}>
       <FlatList
@@ -112,6 +114,9 @@ const ElsaView = (props: ElsaViewProps) => {
             <TouchableOpacity
               onPress={() => {
                 if (navigationPerformer === 'self') {
+                  console.log(
+                    `[Elsa] Navigating to sibling ${item.id} with local navigation...`,
+                  );
                   navigation.navigate(item.id);
                 } else {
                   if (props.navigateToSibling) {

@@ -1,14 +1,10 @@
 https://reactnavigation.org
 
 (1) yarn add @react-navigation/native
-(1a) cd ios && pod install && cd ..
 (2) yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-(2a) cd ios && pod install && cd ..
 (3) yarn add @react-navigation/stack
-(3a) cd ios && pod install && cd ..
 (4) yarn add @react-navigation/bottom-tabs
-(4a) cd ios && pod install && cd ..
+(*) cd ios && pod install && cd ..
 
 TypeScript
 https://reactnavigation.org/docs/typescript/
-https://medium.com/@vdelacou/add-react-navigation-to-react-native-typescript-app-d1cf855b3fe7

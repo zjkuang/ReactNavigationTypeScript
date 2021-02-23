@@ -1,7 +1,10 @@
 import React from 'react';
-import {createStackNavigator, StackNavigationProp} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import {Text, View} from 'react-native';
-import {styles} from './style';
+import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {SvenDetailsView} from '../demo/sven-stack/sven-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -14,9 +17,10 @@ type SvenStackParamList = {
 type SvenStackNavitationProp = StackNavigationProp<SvenStackParamList>;
 const SvenStack = createStackNavigator<SvenStackParamList>();
 export const SvenNavigationView = () => {
+  const test = true;
   return (
     <SvenStack.Navigator>
-      {true ? (
+      {test ? (
         <SvenStack.Screen
           name="Sven"
           children={() => [<SvenView key={0} test={'test'} />]}
@@ -35,18 +39,29 @@ type SvenViewProp = {
 };
 const SvenView = (props: SvenViewProp) => {
   const navigation = useNavigation<SvenStackNavitationProp>();
+
+  const title = 'Sven';
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Sven',
+      title: title,
       headerTitleStyle: {
         alignSelf: 'center',
       },
     });
   }, [navigation]);
+
+  React.useEffect(() => {
+    console.log(`${title} props.test=${props.test}`);
+  }, [props]);
+  
   return (
     <View style={styles.baseView}>
-      <TouchableOpacity onPress={() => {navigation.push('SvenDetails');}}>
-        <Text>Show Detail</Text>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.push('SvenDetails');
+        }}>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Detail</Text>
       </TouchableOpacity>
     </View>
   );

@@ -21,6 +21,13 @@ type MainTabParamList = {
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 export const MainTabView = () => {
   const navigation = useNavigation();
+  //
+  // If we need to pass props to a screen component, instead of
+  //   <Xxx.Screen name='...' component={...} />
+  // we can
+  //   <Xxx.Screen name='...' key={...} children={() => [<Yyy key={...} propname={...}>]} />
+  // (e.g. Screen 'Elsa')
+  //
   return (
     <BottomTab.Navigator
       screenOptions={({route}) => ({
@@ -61,25 +68,22 @@ export const MainTabView = () => {
           }
         },
       })}>
-      <BottomTab.Screen name="Anna" component={AnnaNavigationView} />
-      <BottomTab.Screen name="Kristoff" component={KristoffNavigationView} />
-      <BottomTab.Screen name="Sven" component={SvenNavigationView} />
-      <BottomTab.Screen name="Olaf" component={OlafNavigationView} />
-      {true ? (
-        <BottomTab.Screen
-          name={'Elsa'}
-          children={() => [
-            <ElsaNavigationView
-              key={0}
-              navigateToSibling={(name: MainTabChildSiblingName) => {
-                navigation.navigate(name, {});
-              }}
-            />,
-          ]}
-        />
-      ) : (
-        <BottomTab.Screen name={'Elsa'} component={ElsaNavigationView} />
-      )}
+      <BottomTab.Screen name='Anna' component={AnnaNavigationView} />
+      <BottomTab.Screen name='Kristoff' component={KristoffNavigationView} />
+      <BottomTab.Screen name='Sven' component={SvenNavigationView} />
+      <BottomTab.Screen name='Olaf' component={OlafNavigationView} />
+      <BottomTab.Screen
+        name={'Elsa'}
+        children={() => [
+          <ElsaNavigationView
+            key={0}
+            navigateToSibling={(name: MainTabChildSiblingName) => {
+              console.log(`[MainTab] Navigating to Elsa's sibling ${name}...`);
+              navigation.navigate(name, {});
+            }}
+          />,
+        ]}
+      />
     </BottomTab.Navigator>
   );
 };
