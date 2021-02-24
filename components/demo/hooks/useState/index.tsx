@@ -16,29 +16,30 @@ export const DemoUseStateView = (props: DemoUseStateViewProp) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Dream Restaurant',
+      title: 'Virtual Restaurant',
       headerTitleStyle: {
         alignSelf: 'center',
       },
     });
   }, [navigation, state]);
 
-//   React.useEffect(
-//     () => {
-//       navigation.addListener('beforeRemove', (e) => {
-//         if (state === 'Welcome' || state === 'Bill Paid') {
-//           return;
-//         }
+  React.useEffect(
+    () => {
+      navigation.removeListener('beforeRemove', (e) => {});
+      navigation.addListener('beforeRemove', (e) => {
+        if (state === 'Welcome' || state === 'Bill Paid') {
+          return;
+        }
 
-//         e.preventDefault();
+        e.preventDefault();
 
-//         Alert.alert('WAIT!!!', "You haven't paid the bill yet.", [
-//           {text: 'Sorry, I forgot.', style: 'cancel', onPress: () => {}}
-//         ])
-//       });
-//     },
-//     [navigation, state]
-//   );
+        Alert.alert('WAIT!!!', "You haven't paid the bill yet.", [
+          {text: 'Sorry, I forgot.', style: 'cancel', onPress: () => {}}
+        ])
+      });
+    },
+    [navigation, state]
+  );
   
   return (
     <View style={styles.baseView}>
