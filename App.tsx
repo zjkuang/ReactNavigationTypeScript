@@ -12,9 +12,7 @@ import React from 'react';
 import {RootView} from './components/root/index';
 
 const App = () => {
-  return (
-    <RootView />
-  );
+  return <RootView />;
 };
 
 export default App;
