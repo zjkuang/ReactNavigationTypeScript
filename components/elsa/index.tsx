@@ -8,6 +8,7 @@ import {
   MainTabNavigateToSiblingFunc,
 } from '../navigation-index';
 import {useNavigation} from '@react-navigation/native';
+import {DemoUseStateView} from '../demo/hooks/useState/index';
 
 //
 //  EEEEE  L       SSSS    A
@@ -19,6 +20,7 @@ import {useNavigation} from '@react-navigation/native';
 
 type ElsaStackParamList = {
   Elsa: {}; // navigation root
+  DemoUseState: {};
   // more navigation children can be added here
 };
 const ElsaStack = createStackNavigator<ElsaStackParamList>();
@@ -52,13 +54,15 @@ export const ElsaNavigationView = (props: ElsaNavigationViewProps) => {
       ) : (
         <ElsaStack.Screen name="Elsa" component={ElsaView} />
       )}
+
+      <ElsaStack.Screen name='DemoUseState' component={DemoUseStateView} />
     </ElsaStack.Navigator>
   );
 };
 
 type ElsaListItem = {
   index: number;
-  id: MainTabChildSiblingName;
+  id: MainTabChildSiblingName | 'DemoUseState';
   title: string;
   subtitle?: string;
 };
@@ -83,6 +87,11 @@ const elsaList: ElsaListItem[] = [
     index: 3,
     id: 'Olaf',
     title: 'Olaf',
+  },
+  {
+    index: 4,
+    id: 'DemoUseState',
+    title: 'DemoUseState',
   },
 ];
 
@@ -113,7 +122,9 @@ const ElsaView = (props: ElsaViewProps) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                if (navigationPerformer === 'self') {
+                if (item.id === 'DemoUseState') {
+                  navigation.navigate(item.id);
+                } else if (navigationPerformer === 'self') {
                   console.log(
                     `[Elsa] Navigating to sibling ${item.id} with local navigation...`,
                   );
