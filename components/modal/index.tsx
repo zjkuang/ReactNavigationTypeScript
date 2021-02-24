@@ -28,7 +28,7 @@ export const ModalView = ({navigation, route}: ModalViewProps) => {
       },
     });
   }, [navigation]);
-  
+
   if (route.params?.context === 'anna') {
     return <AnnaModalView />;
   } else if (route.params?.context === 'olaf') {

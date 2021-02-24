@@ -68,10 +68,10 @@ export const MainTabView = () => {
           }
         },
       })}>
-      <BottomTab.Screen name='Anna' component={AnnaNavigationView} />
-      <BottomTab.Screen name='Kristoff' component={KristoffNavigationView} />
-      <BottomTab.Screen name='Sven' component={SvenNavigationView} />
-      <BottomTab.Screen name='Olaf' component={OlafNavigationView} />
+      <BottomTab.Screen name="Anna" component={AnnaNavigationView} />
+      <BottomTab.Screen name="Kristoff" component={KristoffNavigationView} />
+      <BottomTab.Screen name="Sven" component={SvenNavigationView} />
+      <BottomTab.Screen name="Olaf" component={OlafNavigationView} />
       <BottomTab.Screen
         name={'Elsa'}
         children={() => [

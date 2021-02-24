@@ -19,7 +19,7 @@ export const AnnaDetailsView = (props: AnnaDetailsViewProp) => {
       },
     });
   }, [navigation]);
-  
+
   return (
     <View style={styles.baseView}>
       <TouchableOpacity

@@ -19,7 +19,7 @@ export const OlafDetailsView = (props: OlafDetailsViewProp) => {
       },
     });
   }, [navigation]);
-  
+
   return (
     <View style={styles.baseView}>
       <TouchableOpacity

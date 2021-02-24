@@ -19,7 +19,7 @@ export const KristoffDetailsView = (props: KristoffDetailsViewProp) => {
       },
     });
   }, [navigation]);
-  
+
   return (
     <View style={styles.baseView}>
       <TouchableOpacity

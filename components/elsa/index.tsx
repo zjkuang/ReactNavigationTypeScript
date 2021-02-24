@@ -41,7 +41,7 @@ export const ElsaNavigationView = (props: ElsaNavigationViewProps) => {
   navigationPerformer = props.navigateToSibling; // comment/uncomment this line to perform by self/parent
 
   const passNavigationPerformer = true;
-  
+
   return (
     <ElsaStack.Navigator>
       {passNavigationPerformer ? (
@@ -55,7 +55,7 @@ export const ElsaNavigationView = (props: ElsaNavigationViewProps) => {
         <ElsaStack.Screen name="Elsa" component={ElsaView} />
       )}
 
-      <ElsaStack.Screen name='DemoUseState' component={DemoUseStateView} />
+      <ElsaStack.Screen name="DemoUseState" component={DemoUseStateView} />
     </ElsaStack.Navigator>
   );
 };

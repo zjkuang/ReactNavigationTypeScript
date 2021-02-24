@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 
 export const OlafModalView = () => {
   const navigation = useNavigation();
-  
+
   return (
     <View style={styles.baseView}>
       <Text>Olaf Modal</Text>

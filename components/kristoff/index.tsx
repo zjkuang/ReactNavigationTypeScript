@@ -57,7 +57,7 @@ const KristoffView = (props: KristoffViewProp) => {
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
-  
+
   return (
     <View style={styles.baseView}>
       <TouchableOpacity

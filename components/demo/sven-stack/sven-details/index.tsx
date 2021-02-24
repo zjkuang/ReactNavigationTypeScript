@@ -19,7 +19,7 @@ export const SvenDetailsView = (props: SvenDetailsViewProp) => {
       },
     });
   }, [navigation]);
-  
+
   return (
     <View style={styles.baseView}>
       <TouchableOpacity

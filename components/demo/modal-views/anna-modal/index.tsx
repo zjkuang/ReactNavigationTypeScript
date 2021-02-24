@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 
 export const AnnaModalView = () => {
   const navigation = useNavigation();
-  
+
   return (
     <View style={styles.baseView}>
       <Text>Anna Modal</Text>
