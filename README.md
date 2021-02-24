@@ -4,21 +4,15 @@ A code example in TypeScript for [React Navigation](https://reactnavigation.org)
 
 (`Drawer navigation` is yet to be included.)
 
-## Preface
-
-[React Navigation](https://reactnavigation.org) is easy to use in a JavaScript app. But when it comes to TypeScript, there is no easy answer. The one-page [documentation](https://reactnavigation.org/docs/typescript) provided by the offical site might be good enough for a veteran, but it still leaves tons of struggles to a begginer like me. After many hours of research and attempt I was able to develop an example app showing how [React Navigation](https://reactnavigation.org) works with TypeScript. And I think it is worth sharing it out here since many other beginners may still be struggling like I had been and hope this can save them some hours.
-
-Also, this example app can also serve as a cheetsheet, or even a starting app for beginners.
-
 ## Set up
 
-(1) Follow [doc/react-navigation.txt](https://github.com/zjkuang/ReactNavigationTypeScript/blob/master/doc/react-navigation.txt) to install [React Navigation](https://reactnavigation.org) packages and types
+(1) Clone this repository to your machine
 
-(2) Follow [doc/oblador-icons.txt](https://github.com/zjkuang/ReactNavigationTypeScript/blob/master/doc/oblador-icons.txt) to install [oblador Vector Icons](https://github.com/oblador/react-native-vector-icons) used in this example. Some trouble-shooting infomation is also included.
+(2) Follow [doc/react-navigation.txt](https://github.com/zjkuang/ReactNavigationTypeScript/blob/master/doc/react-navigation.txt) to install [React Navigation](https://reactnavigation.org) packages and types
 
-## Run It
+(3) Follow [doc/oblador-icons.txt](https://github.com/zjkuang/ReactNavigationTypeScript/blob/master/doc/oblador-icons.txt) to install [oblador Vector Icons](https://github.com/oblador/react-native-vector-icons) used in this example. Some trouble-shooting infomation is also included.
 
-`cd <path/to/ReactNavigationTypeScript>`
+(4) Run it
 
 `yarn ios`
 
@@ -26,19 +20,13 @@ Also, this example app can also serve as a cheetsheet, or even a starting app fo
 
 (With `yarn android` for the first time you may encounter some environment issues. If so, try the trouble-shooting in [doc/getting-started](https://github.com/zjkuang/ReactNavigationTypeScript/blob/master/doc/getting-started.txt) where started with `(Fix 'yarn android' issue:)`)
 
-## Screen Architecture in This Example
+## Navigation Screen Architecture in This Example
 
 ![](https://github.com/zjkuang/ReactNavigationTypeScript/blob/master/doc/Screen%20Architecture.png)
 
-## A Brief Walk-through
+In this example we have a `RootStack` with two immediate children `MainTab` and `Modal`. Then MainTab hosts 5 immediate children `AnnaStack`, `KristoffStack`, `SvenStack`, `OlafStack`, `ElsaStack`. And `AnnaStack` hosts a root component `Anna` and a details component `anna-details`. And so does each of the other siblings of `AnnaStack` such as `KristoffStack`, except for `ElsaStack` which imitates a `Settings` tab in a real-world app. We push details, dismiss self from details with a button, navigate to the neighbour tab, present a modal.
 
-In this example we created a simple archicture displaying how to manage navigations with `React Navigation` in `TypeScript`. We have a `RootStack` with two immediate children `MainTab` and `Modal`. Then MainTab hosts 5 immediate children `AnnaStack`, `KristoffStack`, `SvenStack`, `OlafStack`, `ElsaStack`. And `AnnaStack` hosts a root component `Anna` and a details component `anna-details`. And so does each of the other siblings of `AnnaStack` such as `KristoffStack`, except for `ElsaStack` which serves like a `Settings` tab in a real-world app.
-
-Now we have pushing of the details, navigating to the neighbour tab, presenting a modal, dismissing self from current stack shown in our example.
-
-Let's move on into code details for the tricks we needed in daily navigation.
-
-## Tricks
+## Notes
 
 ### Type-check Names/Params for  Screen Components with `ParamList`
 
@@ -187,13 +175,13 @@ const ElsaView = (props: ElsaViewProps) => {
 
 ### Present `Variant Modals in RootStack` vs `Single Modal Rendering Variant Components`
 
-In real world, an app can have dozens of modal screens. As recommended by React Navigation doc, the modal screens are hosted by the top level RootStack along with the MainTab or MainStack. We have 2 options here,
+In real world, an app can have dozens of modal screens. As recommended by React Navigation doc, the modal screens are hosted by the top level RootStack along with the MainTab or MainStack. Here we have 2 options,
 
-(1) Register dozens of different components as as modal screens of RootStack
+(1) Register dozens of different components as as modal screens of RootStack, as per recommended by React Navigation doc;
 
-(2) Register one single component as a modal screen of RootStack. Then this single component, when presented, needs to know which contextual component shall be rendered.
+(2) Register one single component as a modal screen of RootStack. And this single component, when presented, renders a contextual component.
 
-Here we pick option (2) in order to show how to pass props to the modal component from the navigation action.
+Here we pick option (2) to show how to pass props to the modal component from the navigation action so that the modal screen component knows which contextual component shall be rendered.
 
 In `ModalView`
 ```
